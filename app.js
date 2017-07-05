@@ -75,15 +75,31 @@ app.get('/index/:planet/edit', function (req, res) {
   })
 });
 
+app.post('/index/:planet/delete', function (req, res) {
+  console.log('checking if you want to delete ' + req.params.planet)
+  res.render('delete', {name: req.params.planet, id: req.body.id})
+})
+
+app.post('/index/delete', function (req, res) {
+  console.log('deleting the planet', req.body.id);
+  Planet.deleteOne({ _id: req.body.id}).then((data) => {
+    console.log('deleted');
+    res.redirect('/index');
+  }).catch((err) => {
+    console.log('error!', err);
+    res.redirect('/index');
+  })
+});
+
 app.get('/index/:planet', function (req, res) {
   // show all details for a given planet
-  console.log('vising planet:', req.params.planet);
+  console.log('visiting planet:', req.params.planet);
   Planet.findOne({name: req.params.planet}, function(err, obj) {
     if (err) {
       console.log('error:', err);
       res.redirect('/index');
     }
-    console.log(obj);
+    // console.log(obj);
     res.render('planet', obj);
   })
 });
