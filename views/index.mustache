@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PLANETS</title>
+  </head>
+  <body>
+    <h1>Planet Index</h1>
+    <ul>
+      <!-- {{planets}} -->
+      {{#planets}}
+        <li><a href="/index/{{name}}">{{name}}</a></li>
+      {{/planets}}
+    </ul>
+
+    <a href="/index/create">Add a planet!</a>
+  </body>
+</html>

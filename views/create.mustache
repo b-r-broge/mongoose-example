@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {{#name}}
+      <title>Edit {{.}}</title>
+    {{/name}}
+    {{^name}}
+      <title>Add a planet</title>
+    {{/name}}
+  </head>
+  <body>
+    {{#name}}
+      <form class="" action="/index/{{name}}/edit" method="post">
+    {{/name}}
+    {{^name}}
+      <form class="" action="/index/create" method="post">
+    {{/name}}
+      <input type="text" name="name" value="{{name}}" placeholder="Insert planet name" required="true">
+      <input type="text" name="size" value="{{size}}" placeholder="Insert planet size (km radius)">
+      <input type="number" name="orbit" value="{{orbit}}" placeholder="Insert the number of days it takes for a full orbit">
+      <button type="submit" name="id" value={{_id}}>
+        {{#name}}
+          Edit
+        {{/name}}
+        {{^name}}
+          Add
+        {{/name}}
+      </button>
+    </form>
+  </body>
+</html>
